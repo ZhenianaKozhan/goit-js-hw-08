@@ -13,7 +13,8 @@ player.on('timeupdate', throttle(onPlay, 1000));
 
 const currentTimeLocalStorage = localStorage.getItem("videoplayer-current-time")
 
-player.setCurrentTime(JSON.parse(currentTimeLocalStorage).seconds).then(function(seconds) {
+if (currentTimeLocalStorage) {
+    player.setCurrentTime(JSON.parse(currentTimeLocalStorage).seconds).then(function(seconds) {
     // seconds = the actual time that the player seeked to
 }).catch(function(error) {
     switch (error.name) {
@@ -26,6 +27,8 @@ player.setCurrentTime(JSON.parse(currentTimeLocalStorage).seconds).then(function
             break;
     }
 });
+}
+
 
 
 
